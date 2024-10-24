@@ -1,24 +1,7 @@
 <?php
 
-// Get the login
-function catalog_sqlLogin() {
-	// CSV File 
-	$file = fopen("../../assignment-2/sql.csv", 'r');
-	
-	$login = array_map();
-	while ($record = fgetcsv($file, 1000, ',')) {
-		// Get the values
-		$login[0] = $record[0];
-		$login[1] = $record[1];
-		$login[2] = $record[2];
-		$login[3] = $record[3];
-	}
-	
-	// Close file stream
-	fclose($file);
-	
-	return $login;
-}
+// SQL stuff
+include "sql.php";
 
 // Get unique catergories 
 function catalog_getUniqueCategories($sqli) {
@@ -103,7 +86,7 @@ function catalog_print($sqli, $query_result) {
 // Try the query login
 function catalog_query($input_name, $input_cat) {
 	// Get login in an array
-	$sql_login = catalog_sqlLogin();
+	$sql_login = sql_login();
 	$sql_host = $sql_login[0];
 	$sql_user = $sql_login[1];
 	$sql_pass = $sql_login[2];
@@ -169,25 +152,7 @@ function catalog_query($input_name, $input_cat) {
 	
 }
 
-// Standardise and remove issues with the values.
-function catalog_removeProblemChars($str) {
-	// Replace all values with cool regex!
-	$good_chars = [ "\[", "\]", "\-", "\.", "\(", "\)", " " ];
-	
-	// Create the regex
-	$regex_str = "/[^A-Za-z0-9";
-	
-	// Add all good characters.
-	for ($i = 0; $i < sizeof($good_chars); $i++) {
-		$regex_str = $regex_str . $good_chars[$i];
-	}
-	
-	// Finish the regex
-	$regex_str = $regex_str . "]/s";
-	
-	// These  will remove any non-alphabetical/numerical characters.
-	return preg_replace($regex_str, '', $str);
-}
+
 
 
 
@@ -207,13 +172,13 @@ function catalog_run() {
 	
 	if (isset($_GET["q"])) {
 		$item_query = $_GET["q"];
-		$item_query = catalog_removeProblemChars($item_query);
+		$item_query = sql_removeProblemChars($item_query);
 	}
 	
 	// Get the catergory 
 	if (isset($_GET["cat"])) {
 		$item_cat = $_GET["cat"];
-		$item_cat = catalog_removeProblemChars($item_cat);
+		$item_cat = sql_removeProblemChars($item_cat);
 	}
 	
 	// Run the JSON

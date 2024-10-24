@@ -28,9 +28,9 @@ function cookie_get(cookie_name) {
 }
 
 // Set the cookie 
-function cookie_set(cookie_name, cookie_value) {
+function cookie_set(cookie_name, cookie_value, cookie_date = new Date()) {
 	// Get the date (now)
-	let date = new Date();
+	let date = cookie_date;
 	
 	// Set the date to be essentially forever.
 	date.setTime(date.getTime() + 1000*60*60*24*999);
@@ -42,4 +42,12 @@ function cookie_set(cookie_name, cookie_value) {
 	
 	// Set to the document.cookie, saves. 
 	document.cookie = cookieBody + ';' + cookieExpire + ';' + cookiePath;
+}
+
+// Cookie reset 
+function cookie_remove(cookie_name) {
+	// Set to enoch 0
+	let date = new Date();
+	date.setTime(0);
+	cookie_set(cookie_name, null, date);
 }

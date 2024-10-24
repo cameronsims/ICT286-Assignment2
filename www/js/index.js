@@ -22,6 +22,10 @@ const index_set = function(file_name, after_load = function() {}) {
 		}
 	};
 	
+	user_setLogin(function(user) {
+		index_set("user.html", user_setType);
+	});
+	
 	// Send the head.
 	xhr.setRequestHeader("Access-Control-Allow-Credentials", "*");
 	xhr.setRequestHeader("Access-Control-Allow-Origin", "https://eris.ad.murdoch.edu.au");
@@ -38,7 +42,6 @@ const index_catalog_fetch = function(inputStr = null) {
 		// Load the item 
 		item_load(id);
 	}; 
-	
 	catalog_fetch(inputStr, onclick);
 	search_onload(onclick);
 };

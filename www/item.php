@@ -1,28 +1,11 @@
 <?php 
 
-// Get the login
-function item_sqlLogin() {
-	// CSV File 
-	$file = fopen("../../assignment-2/sql.csv", 'r');
-	
-	$login = array_map();
-	while ($record = fgetcsv($file, 1000, ',')) {
-		// Get the values
-		$login[0] = $record[0];
-		$login[1] = $record[1];
-		$login[2] = $record[2];
-		$login[3] = $record[3];
-	}
-	
-	// Close file stream
-	fclose($file);
-	
-	return $login;
-}
+// SQL stuff
+include "sql.php";
 
 function item_existsSQL($id) {
 	// Get login in an array
-	$sql_login = item_sqlLogin();
+	$sql_login = sql_login();
 	$sql_host = $sql_login[0];
 	$sql_user = $sql_login[1];
 	$sql_pass = $sql_login[2];
@@ -68,8 +51,8 @@ function item_existsSQL($id) {
 // Get the item information
 function item_fetch() {
 	// Before we do anything reguarding the HTML.
-	$item_id = $_GET["id"];
-	if (!isset($_GET["id"])) {
+	$item_id = sql_removeProblemChars($_GET["id"]);
+	if (!isset($item_id)) {
 		// Don't print anything, tell to find an actual item
 		echo "{}";
 	} else {

@@ -97,7 +97,7 @@ function item_addToCart(id) {
 function item_setAmount(id, amount) {
 	
 	// if not valid amount, don't continue 
-	if (amount < 1) {
+	if (amount < 0) {
 		return;
 	}
 	
@@ -110,6 +110,31 @@ function item_setAmount(id, amount) {
 	
 	// Assume we have values, we first decode the cookie value 
 	let shoppingCart = item_getCart();
+	
+	// If the amount is zero, we will remove it
+	if (amount == 0) {
+		// Add all cookies beside our current ID.
+		if (items == null) {
+			return; 
+		}
+		
+		// Otherwise, just set everything else
+		for (let i = 0; i < shoppingCart.length; i++) {
+			// This is the item in question 
+			let item = shoppingCart[i]
+			
+			if (item.id == id) {
+				// Kill item
+				shoppingCart.splice(i, 1);
+				
+				// Decrement
+				i--;
+			}
+		}
+		
+		// Set new shopping cart to cookie
+		cookie_set(shoppingCartName, JSON.stringify(shoppingCart));
+	}
 	
 	// Check if cookies have any values
 	if (shoppingCart == null) {
