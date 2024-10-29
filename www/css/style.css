@@ -31,6 +31,7 @@ body {
 
 .header .header-login {
 	font-size: 1.2rem;
+	cursor: pointer;
 }
 
 .nav {
@@ -238,4 +239,55 @@ body {
 	color: red;
 	font-weight: bold;
 	text-decoration: underline;
+}
+
+/****************
+ *              *
+ *  ADMIN PANEL *
+ *              *
+ ****************/
+#user-list, #item-list {
+	border-spacing: 0rem;
+}
+
+.btn-delete {
+	border: darkred 0.1rem solid;
+	background: linear-gradient(red 0%, darkred 100%);
+	color: white;
+}
+
+.table-user-head .table-user-data, .table-item-head .table-item-data {
+	background: linear-gradient(#0000ff 0%, #000000 200%);
+	color: white;
+	
+	padding: 0.5rem 0rem;
+}
+
+.table-user-row, .table-item-row {
+	
+}
+
+.table-user-data, .table-item-data {
+	text-align: center;
+}
+
+.table-user-data > *, .table-item-data > * {
+	width: 100%;
+}
+
+
+.table-user-id, .table-item-id {
+	max-width: 1.5rem;
+	min-width: 1rem;
+	
+	font-weight: bold;
+}
+.table-user-username, .table-item-name {
+	
+}
+.table-user-type, .table-item-category {
+	
+}
+.table-user-name, .table-user-address, .table-user-phone, .table-user-email, .table-item-price, .table-item-stock {
+
 }

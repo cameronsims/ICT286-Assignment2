@@ -335,7 +335,7 @@ function item_place(json) {
 function item_load(id, onload = item_place) {
 	// If we do not have any arguments, we will assume they want the entire DB
 	const url = "https://eris.ad.murdoch.edu.au/~34829454/assignment-2/item.php";
-	let query = "?id=" + id;
+	let query = "?action=get&id=" + id;
 	
 	// Run the requests.
 	let xhr = new XMLHttpRequest();

@@ -4,6 +4,8 @@ const index_set = function(file_name, after_load = function() {}) {
 	const url = "https://eris.ad.murdoch.edu.au/~34829454/assignment-2/" + file_name;
 	let query = "";
 	
+	window.location.hash = file_name;
+	
 	// Run the requests.
 	let xhr = new XMLHttpRequest();
 	const fullURL = url + query;
