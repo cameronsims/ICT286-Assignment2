@@ -32,6 +32,7 @@ body {
 .header .header-login {
 	font-size: 1.2rem;
 	cursor: pointer;
+	float: right;
 }
 
 .nav {
@@ -77,6 +78,11 @@ body {
 	padding: 0.5rem 1rem;
 }
 
+.footer {
+	padding: 2rem 2.5rem;
+	background: lightgray;
+}
+
 /*************
  *           *
  * cart.html *
@@ -116,6 +122,24 @@ body {
 	max-width: 5rem;
 	width: 100%;
 }
+
+.cart-banner {
+	margin: 1rem 0rem;
+	padding: 1rem;
+}
+.cart-failure {
+	background: red;
+	color: white;
+	
+	font-weight: bold;
+}
+.cart-success {
+	background: darkgreen;
+	color: white;
+	
+	font-weight: bold;
+}
+
 
 /************
  *          *
@@ -250,10 +274,18 @@ body {
 	border-spacing: 0rem;
 }
 
-.btn-delete {
+.btn-delete, .btn-delete:visited {
 	border: darkred 0.1rem solid;
 	background: linear-gradient(red 0%, darkred 100%);
 	color: white;
+}
+.btn-delete:hover {
+	border: darkred 0.1 solid;
+	background: darkred;
+}
+.btn-delete:active {
+	border: blue 0.1 solid;
+	background: blue;
 }
 
 .table-user-head .table-user-data, .table-item-head .table-item-data {

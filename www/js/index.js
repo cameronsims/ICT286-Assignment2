@@ -24,9 +24,11 @@ const index_set = function(file_name, after_load = function() {}) {
 		}
 	};
 	
-	user_setLogin(function(user) {
-		index_set("user.html", user_setType);
-	});
+	//if (file_name != "user.html") {
+	//	user_setLogin(function(user) {
+	//		index_set("user.html", user_setType);
+	//	});
+	//}
 	
 	// Send the head.
 	xhr.setRequestHeader("Access-Control-Allow-Credentials", "*");

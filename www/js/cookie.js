@@ -4,7 +4,7 @@ function cookie_get(cookie_name) {
 	let cookieKey = cookie_name + '=';
 	
 	// Set the cookie to decoded string 
-	let cookieDC = decodeURIComponent(document.cookie);
+	let cookieDC = document.cookie; //decodeURIComponent(document.cookie);
 	
 	// Crack the cookie 
 	let cookieCracked = cookieDC.split(';');
@@ -12,14 +12,23 @@ function cookie_get(cookie_name) {
 	// For all the cookies 
 	for (let i = 0; i < cookieCracked.length; i++) {
 		// This is the cookie in question 
-		let cookie = cookieCracked[i];
+		let cookie = decodeURIComponent(cookieCracked[i]);
 		
 		// if the cookie contains the string 
-		let cookieKeyIndex = cookie.indexOf(cookieKey);
-		if (cookieKeyIndex != -1) {
-			// Get the value of the cookie
-			let cookieValue = cookie.substring(cookieKey.length + 1, cookie.length);
-			return cookieValue;
+		let cookieSeperate = cookie.split('=');
+		
+		// Get the values
+		const cookieName = cookieSeperate[0].trim();
+		
+		// Check if time is good 
+		if (cookieName == cookie_name) {
+			// Value of the cookie name
+			const cookieValue = cookieSeperate.slice(1).join('=');
+			
+			if (cookieSeperate.length > 1) {
+				// Get the value of the cookie
+				return cookieValue;
+			}
 		}
 	}
 	
@@ -36,12 +45,16 @@ function cookie_set(cookie_name, cookie_value, cookie_date = new Date()) {
 	date.setTime(date.getTime() + 1000*60*60*24*999);
 	
 	// Set the expirey, path and value of cookie
-	let cookieBody = cookie_name + '=' + cookie_value;
+	let cookieBody   = cookie_name + '=' + cookie_value;
 	let cookieExpire = "expires=" + date.toUTCString();
-	let cookiePath = "path=/";
+	let cookiePath   = "path=/";
+	let cookieDomain = "domain=eris.ad.murdoch.edu.au";
 	
 	// Set to the document.cookie, saves. 
-	document.cookie = cookieBody + ';' + cookieExpire + ';' + cookiePath;
+	document.cookie = cookieBody + ';' + 
+	                  cookiePath + ';' +
+					  cookieDomain + ';' + 
+					  cookieExpire + ';';
 }
 
 // Cookie reset 

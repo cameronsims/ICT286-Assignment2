@@ -6,7 +6,7 @@ function item_getCart() {
 	// The cookie value 
 	let cookieCart = cookie_get(shoppingCartName);
 	// Check if cookies have any values
-	if (cookieCart == null) {
+	if (cookieCart == null || cookieCart == "null") {
 		// Create the cookie and set it
 		return null;
 	}
@@ -14,6 +14,9 @@ function item_getCart() {
 	// Decode json 
 	// Assume we have values, we first decode the cookie value 
 	let shoppingCart = JSON.parse(cookieCart);
+	if (shoppingCart == null) {
+		return null;
+	}
 	
 	// Check if any value is not valid 
 	for (let i = 0; i < shoppingCart.length; i++) {
@@ -64,7 +67,7 @@ function item_addToCart(id) {
 	// Check if cookies have any values
 	if (shoppingCart == null) {
 		// Create the cookie and set it
-		cookie_set(shoppingCartName, "[{\"id\":" + id + ",\"amount\":1}]");
+		cookie_set(shoppingCartName, "[{\"id\":" + id + ",\"amount\": 1}]");
 		return;
 	}
 	
@@ -172,6 +175,9 @@ function item_setAmount(id, amount) {
 function cart_place() {
 	// Get all items 
 	let items = item_getCart();
+	if (items == null) {
+		return;
+	}
 	
 	// Get the cart element 
 	let eCart = $("#cart-tbl-body");
@@ -352,6 +358,66 @@ function item_load(id, onload = item_place) {
 			
 			// Place the query items
 			onload(json);
+		}
+	};
+	
+	// Send the head.
+	xhr.setRequestHeader("Access-Control-Allow-Credentials", "*");
+	xhr.setRequestHeader("Access-Control-Allow-Origin", "https://eris.ad.murdoch.edu.au");
+	xhr.send(null);
+}
+
+// Demand an order 
+function item_orderCart() {
+	// Ask the cart php file
+	
+	// If we do not have any arguments, we will assume they want the entire DB
+	const url = "https://eris.ad.murdoch.edu.au/~34829454/assignment-2/cart.php";
+	let query = "";
+	
+	// Run the requests.
+	let xhr = new XMLHttpRequest();
+	const fullURL = url + query;
+	xhr.open("GET", fullURL, true);
+	
+	// Function is called when we get it.
+	xhr.onreadystatechange = function() {
+		// If valid.
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			
+			// Place the query items
+			let table = $("#cart-tbl");
+			
+			// Remove all existing banners...
+			$(".cart-banner").remove();
+			
+			let banner = $( document.createElement("div") );
+			banner.addClass("cart-banner");
+			
+			try {
+				// Parse the JSON
+				let json = JSON.parse(xhr.responseText);
+				if (json["success"]) {
+					// ON success
+					banner.addClass("cart-success");
+					banner.text("Order was successful...");
+					
+					// Delete from cart
+					cookie_remove("cs_shoppingcart");
+				} else {
+					// On failure
+					banner.addClass("cart-failure");
+					banner.text("Order failed.");
+				}
+			} catch (e) {
+				// On failure
+				banner.addClass("cart-failure");
+				banner.text("Order failed.");
+			}
+			
+			// Add into the end 
+			table.after( banner );
+			
 		}
 	};
 	

@@ -16,7 +16,7 @@ function user_fetch(onload = null) {
 			try {
 				// Parse the JSON
 				let json = JSON.parse(xhr.responseText);
-			//	console.log(xhr.responseText);
+				//	console.log(xhr.responseText);
 				
 				// Place the query items
 				onload(json);
@@ -77,6 +77,7 @@ function admin_changeOne(tuple, onload = function() {}) {
 	let reqNames = { 
 		"id": "uid", 
 		"username": "uname", 
+		"password": "upw",
 		"type": "type",
 		"name": "rname",
         "address": "address",
@@ -139,7 +140,7 @@ function admin_setUserChanges() {
 	let eItems = eList.children();
 	
 	// For each column...
-	const cols = ["id", "username", "type", "name", "address", "phone", "email"];	
+	const cols = ["id", "username", "password", "type", "name", "address", "phone", "email"];	
 	
 	// For all items
 	for (let i = 0; i < eItems.length; i++) {
@@ -153,6 +154,7 @@ function admin_setUserChanges() {
 		let obj = {
 			"id": null,
 			"username": null,
+			"password": null,
 			"type": null,
 			"name": null,
 			"address": null,
@@ -423,7 +425,7 @@ function admin_addUserControls(eUserTable, onclick) {
 // Load all users
 function admin_addUsers() {
 	// Get values 
-	const cols = ["id", "username", "type", "name", "address", "phone", "email"];
+	const cols = ["id", "username", "password", "type", "name", "address", "phone", "email"];
 	
 	// We will read all items and users from the database...
 	let eUserTable = $("#user-list");
@@ -457,7 +459,7 @@ function admin_addUsers() {
 				eCol.addClass("table-user-data");
 				eCol.addClass("table-user-" + col);
 				
-				if (col == "id" || j == "name") {
+				if (col == "id" || col == "username") {
 					eCol.text( tuple[ col ] );
 				} else {
 					// Create input 

@@ -16,16 +16,18 @@
 		
 		<b>Update User Details</b>
 		<form id="user-modify" accept-charset="utf-8">
-			<input id="user-rname"   name="user-rname"   type="text"   placeholder="Real Name"/><br/>
-			<input id="user-address" name="user-address" type="text"   placeholder="Address"/><br/>
-			<input id="user-phone"   name="user-phone"   type="text"   placeholder="Phone"/><br/>
-			<input id="user-email"   name="user-email"   type="text"   placeholder="Email"/><br/>
+			<input id="user-password" name="user-password" type="passsword" placeholder="Password"/><br/>
+			<input id="user-rname"    name="user-rname"    type="text"      placeholder="Real Name"/><br/>
+			<input id="user-address"  name="user-address"  type="text"      placeholder="Address"/><br/>
+			<input id="user-phone"    name="user-phone"    type="text"      placeholder="Phone"/><br/>
+			<input id="user-email"    name="user-email"    type="text"      placeholder="Email"/><br/>
 			
-			<input id="user-change"                      type="submit" value="Update"/>
+			<input id="user-change"                        type="submit" value="Update"/>
 		</form>
 	
 		<div class="other-panel">	
 			<button onclick="user_logout()">Log-out</button>
+			<button class="btn-delete" onclick="user_delete()">Delete User</button>
 		</div>
 	</body>
 </html>

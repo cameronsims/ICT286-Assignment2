@@ -1,7 +1,20 @@
 // Get user cookie 
 function user_loginCookie() {
+	// Get the non-uri compnent 
+	let cookieStr = cookie_get("cs_ulog");
+	if (cookieStr == null) {
+		return null;
+	}
+	
+	// If we have to %% at one and two
+	if (cookieStr[0] == '%' && cookieStr[1] == '%') {
+		cookieStr = cookieStr.substring(1);
+	}
+	
+	let jsonStr = decodeURIComponent(cookieStr);
+	
 	// Return the cookie 
-	return JSON.parse(cookie_get("cs_ulog"));
+	return JSON.parse(jsonStr);
 }
 
 // If user is logged in...
@@ -42,11 +55,47 @@ function user_login(onload) {
 
 // Log user out 
 function user_logout() {
-	cookie_remove('cs_ulog');
+	cookie_remove("cs_ulog");
 	$("#header-login").text("Login");
 	
 	// Set to login
 	index_set('login.html');
+}
+
+// Delete user 
+function user_delete() {
+	// Warn user 
+	let wantsToDelete = confirm("Are you sure you want to delete this account? This cannot be undone.");
+	if (!wantsToDelete) {
+		return;
+	}
+	
+	// Delete.
+	const id = user_loginCookie()["id"];
+	
+	// If we do not have any arguments, we will assume they want the entire DB
+	const url = "https://eris.ad.murdoch.edu.au/~34829454/assignment-2/user.php";
+	let query = "?action=delete&uid=" + id;
+	
+	// Run the requests.
+	let xhr = new XMLHttpRequest();
+	const fullURL = url + query;
+	xhr.open("GET", fullURL, true);
+	
+	// Function is called when we get it.
+	xhr.onreadystatechange = function() {
+		// If valid.
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			// We've sent it successfully.
+		}
+	};
+	
+	// Send the head.
+	xhr.setRequestHeader("Access-Control-Allow-Credentials", "*");
+	xhr.setRequestHeader("Access-Control-Allow-Origin", "https://eris.ad.murdoch.edu.au");
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	
+	xhr.send(null);
 }
 
 // Try login 
@@ -75,6 +124,50 @@ function user_attemptLogin(elem, info, onload) {
 			
 			// Place the query items
 			onload(json);
+		}
+	};
+	
+	// Send the head.
+	xhr.setRequestHeader("Access-Control-Allow-Credentials", "*");
+	xhr.setRequestHeader("Access-Control-Allow-Origin", "https://eris.ad.murdoch.edu.au");
+	
+	// Make sure they know its a form post
+	xhr.setRequestHeader("Content-Type", "application/x-www-form-urlencoded");
+	//console.log(reqHeader);
+	
+	xhr.send(reqHeader);
+}
+
+// Create an account 
+function user_createAccount(elem, info, onload) {
+	// Set this element to not go wherever.
+	elem.preventDefault();
+	
+	// Make json request into a string
+	const reqHeader = "action=create"+
+	                  "&uname=" + encodeURIComponent(info["uname"]) + 
+	                  "&upw="  + encodeURIComponent(info["upw"]);
+	
+	// This is the url we're going to
+	let url = "user.php" + "?action=create";
+	
+	// AJAX!!
+	let xhr = new XMLHttpRequest();
+	xhr.open("POST", url, true);
+	
+	// Function is called when we get it.
+	xhr.onreadystatechange = function() {
+		// If valid.
+		if (xhr.readyState == 4 && xhr.status == 200) {
+			// Parse the JSON
+			try {
+				let json = JSON.parse(xhr.responseText);
+			
+				// Place the query items
+				onload(json);
+			} catch (e) {
+				
+			}
 		}
 	};
 	
@@ -130,6 +223,7 @@ function user_change(values) {
 		// If valid.
 		if (xhr.readyState == 4 && xhr.status == 200) {
 			// Parse the JSON
+			//console.log(xhr.responseText);
 			let json = JSON.parse(xhr.responseText);
 			
 			//// Place the query items
@@ -157,6 +251,7 @@ function user_change(values) {
 function user_update() {	
 	// Names 
 	let names = [
+		"password",
 		"rname",
 		"address",
 		"phone", 
@@ -177,11 +272,13 @@ function user_update() {
 			if (value != null && value.length > 1) {
 				// Add the name into the values
 				let str = "";
-				if (values.length > 0) {
-					str += '&';
+				if (names[i] != "password") {
+					str = str + '&' + names[i] + "=" + encodeURIComponent(value);
+				} else {
+					str = str + "upw=" + encodeURIComponent(value);
 				}
 				
-				str = str + names[i] + "=" + encodeURIComponent(value);
+				
 				values += str;
 			}
 		}
@@ -190,6 +287,7 @@ function user_update() {
 	// If our query is long enough...
 	if (values.length > 0) {
 		// Send it to the function to change 
+		//console.log(values);
 		user_change(values);
 	}
 }
@@ -210,8 +308,7 @@ function user_goodForm() {
 // Fetch user details 
 function user_getUserDetails(onload) {
 	// If we do not have any arguments, we will assume they want the entire DB
-	const loginCookie = cookie_get("cs_ulog");
-	const login = JSON.parse(loginCookie);
+	const login = user_loginCookie();
 	const url = "https://eris.ad.murdoch.edu.au/~34829454/assignment-2/user.php";
 	const query = "?action=get&uid=" + login["id"];
 	
@@ -224,11 +321,16 @@ function user_getUserDetails(onload) {
 	xhr.onreadystatechange = function() {
 		// If valid.
 		if (xhr.readyState == 4 && xhr.status == 200) {
-			// Parse the JSON
-			let json = JSON.parse(xhr.responseText);
-			
-			// Place the query items
-			onload(json);
+			try {
+				// Parse the JSON
+				//console.log(xhr.responseText);
+				let json = JSON.parse(xhr.responseText);
+				
+				// Place the query items
+				onload(json);
+			} catch (e) {
+				
+			}
 		}
 	};
 	
@@ -248,8 +350,13 @@ function user_createLoginForm() {
 		// If success 
 		let user_id = json["id"];
 		let success = json["success"];
+		if (!success) {
+			// Tell user 
+			alert("Account could not log in.");
+			return;
+		}
 		
-		let c = cookie_get("cs_ulog");
+		let c = user_loginCookie();
 		$("#header-login").text(c["username"]);
 		
 		// Wait and then go 
@@ -258,10 +365,23 @@ function user_createLoginForm() {
 	
 	// This is the request header format we're using.
 	eForm.submit( function(e) { 
+		// If either are null
+		let uname = $("#user-name").val();
+		let upass = $("#user-pass").val();
+		
+		if (uname == null || upass == null) {
+			// Don't redirect
+			e.preventDefault();
+			
+			// Tell user 
+			alert("Please ensure you have both a username and a password!");
+			return;
+		}
+		
 		// Parse POST info
 		let info = {
-			"uname": $("#user-name").val(), 
-			"upw": $("#user-pass").val() 
+			"uname": uname,
+			"upw": upass
 		};
 		
 		// Run function
@@ -269,10 +389,53 @@ function user_createLoginForm() {
 	});
 }
 
+// Function to create a form to create new account
+function user_createSignupForm() {
+	// The form we're attaching 
+	let eForm = $("#user-signup");
+	
+	// When we submit 
+	eForm.submit( function(e) {
+		// If either are null
+		let uname = $("#user-new-name").val();
+		let upass = $("#user-new-pass").val();
+		
+		// Don't redirect
+		e.preventDefault();
+		
+		if (uname == null || upass == null) {
+			// Tell user 
+			alert("Please ensure you have both a username and a password!");
+			return;
+		}
+		
+		// On load 
+		let onload = function(json) {
+			// If not successful 
+			if (json["success"] != 1) {
+				alert("We couldn't create an account, please try a different method.");
+			} else {
+				alert("Account created, please login now!");
+			}
+		}
+	
+	
+		// Parse POST info 
+		let info = {
+			"uname": uname,
+			"upw": upass
+		};
+		
+		// Try create account
+		user_createAccount(e, info, onload);
+	});
+}
+
 // Onload 
 function user_setType() {
 	// If no login cookies 
 	let logc = user_loginCookie();
+	console.log("RGORKGOKGROG");
 	
 	// If no login exists...
 	if (logc == null) {
@@ -281,6 +444,7 @@ function user_setType() {
 			// Set the Login 
 			$("#header-login").text("Login");
 			user_createLoginForm();
+			user_createSignupForm();
 		});
 	} else {
 		
@@ -297,14 +461,6 @@ function user_setType() {
 				user_update();
 			});
 			
-			// Get the SQL data 
-			user_getUserDetails(function(user) {
-				$("#user-rname")  .val(user["name"]);
-				$("#user-address").val(user["address"]);
-				$("#user-phone")  .val(user["phone"]);
-				$("#user-email")  .val(user["email"]);
-			});
-			
 			// if the user is an admin
 			if (logc["admin"] == 1) {
 				// Create a cool pathway
@@ -317,6 +473,14 @@ function user_setType() {
 				
 				$("div.other-panel").append(eAdminBtn);
 			}
+			
+			// Get the SQL data 
+			user_getUserDetails(function(user) {
+				$("#user-rname")  .val(user["name"]);
+				$("#user-address").val(user["address"]);
+				$("#user-phone")  .val(user["phone"]);
+				$("#user-email")  .val(user["email"]);
+			});
 		});
 	}
 }

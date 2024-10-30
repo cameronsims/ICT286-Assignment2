@@ -155,7 +155,7 @@ function admin_exec() {
 	}
 	
 	// Check if the user login is good 
-	$user_log = json_decode($_COOKIE["cs_ulog"], true);
+	$user_log = json_decode(ltrim(urldecode($_COOKIE["cs_ulog"]), '%')), true);
 	$user_id = $user_log["id"];
 	$user_pw = $user_log["password"];
 	$user = admin_valid($user_id, $user_pw);
