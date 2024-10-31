@@ -400,7 +400,7 @@ function item_orderCart() {
 				if (json["success"]) {
 					// ON success
 					banner.addClass("cart-success");
-					banner.text("Order was successful...");
+					banner.text("Order was successful ($" + json["cost"] +")...");
 					
 					// Delete from cart
 					cookie_remove("cs_shoppingcart");

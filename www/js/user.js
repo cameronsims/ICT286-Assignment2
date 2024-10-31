@@ -435,7 +435,7 @@ function user_createSignupForm() {
 function user_setType() {
 	// If no login cookies 
 	let logc = user_loginCookie();
-	console.log("RGORKGOKGROG");
+	//console.log("RGORKGOKGROG");
 	
 	// If no login exists...
 	if (logc == null) {

@@ -4,6 +4,26 @@ const index_set = function(file_name, after_load = function() {}) {
 	const url = "https://eris.ad.murdoch.edu.au/~34829454/assignment-2/" + file_name;
 	let query = "";
 	
+	// Set names
+	document.title = "Rael Trading"
+	if (file_name != "index.html") {
+		// Get the name of the file 
+		let tokens = file_name.split('.');
+		
+		// Remove file extension
+		if (tokens.length > 1) {
+			tokens.pop();
+		}
+		
+		// Join to make new name
+		let fname = tokens.join(' ');
+		
+		// Set first char to upper case.
+		fname = fname[0].toUpperCase() + fname.substring(1);
+		
+		document.title = "Rael Trading - " + fname;
+	}
+	
 	window.location.hash = file_name;
 	
 	// Run the requests.
