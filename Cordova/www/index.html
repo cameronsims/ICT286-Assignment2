@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Rael Trading</title>
+		<link rel="stylesheet" href="./css/style.css"/>
+		
+		<!-- Annoying Cordova Stuff -->
+		<meta http-equiv="Access-Control-Allow-Origin" content="*">
+		<meta http-equiv="Access-Control-Allow-Methods" content="GET,PUT,POST,DELETE">
+		<meta http-equiv="Access-Control-Allow-Headers" content="Content-Type">
+		<meta http-equiv="Referrer-Policy" content="no-referrer, strict-origin-when-cross-origin" />
+		
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		
+		<script src="./js/cookie.js"></script>
+		<script src="./js/catalog.js"></script>
+		<script src="./js/user.js"></script>
+		<script src="./js/item.js"></script>
+		
+		<script src="./js/index.js"></script>
+	</head>
+	<body onload="index_set('home.html')">
+		<!-- This is the universal header -->
+		<div class="header">
+			<span class="header-title">Rael Trading</span>
+			<span id="header-login" class="header-login" onclick="user_setType()">Login</span>
+		</div>
+		
+		<!-- This is the navigation bar -->
+		<div class="nav">
+			<span class="nav-item" onclick="index_set('home.html')">Home</span>
+			<span class="nav-item" onclick="index_set('catalog.html', index_catalog_fetch)">Catalog</span>
+			<span class="nav-item" onclick="index_set('cart.html', cart_place)">Cart</span>
+			<span class="nav-item" onclick="index_set('help.html')">Help</span>
+		</div>
+		
+		<!-- This is the content area -->
+		<div id="content" class="content"></div>
+		
+		<!-- This is the footer -->
+		<div class="footer">
+			Rael Trading &copy;2024 All rights reserved.
+		</div>
+	</body>
+</html>

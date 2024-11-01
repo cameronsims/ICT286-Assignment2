@@ -1,0 +1,325 @@
+/********************* 
+ *                   *
+ * universial styles *
+ *                   *
+ *********************/
+body {
+	font-family: Calibri;
+	
+	margin: 0rem;
+	padding: 0rem;	
+}
+
+.header {	
+	/* Set position and size */
+	top: 0rem;
+	left: 0rem;
+	
+	/*width: 100%;*/
+	height: 3rem;
+	
+	/* Stuff that makes it look nice */
+	background: white;
+	margin: 0rem;
+	padding: 1rem 0.5rem;
+}
+
+.header .header-title {
+	font-size: 2.5rem;
+	font-weight: bold;
+}
+
+.header .header-login {
+	font-size: 1.2rem;
+	cursor: pointer;
+	float: right;
+}
+
+.nav {
+	/* Set to be a nice size*/
+	position: sticky;
+	top: 0rem;
+	left: 0rem;
+	
+	/*max-width: 100%;
+	width: 100%;*/
+	font-size: 1.2rem;
+	
+	/* Stuff that makes it look nice */
+	color: white;
+	background: darkred;
+	
+	margin: 0rem;
+	padding: 0.5rem 1rem;
+}
+
+.nav-item {
+	/* Show that it seperates */
+	border-left: 0.1rem solid white;
+	padding: 0rem 1rem;
+	
+	/* Set the cursor so it looks like you can click on it */
+	cursor: pointer;
+}
+.nav-item:last-child {
+	/* Show that it is the last */
+	border-right: 0.1rem solid white;
+}
+
+.nav-item:hover {
+	color: #f0f0f0;
+}
+
+.nav-item:active {
+	color: #ffff00;
+}
+
+.content {
+	padding: 0.5rem 1rem;
+}
+
+.footer {
+	padding: 2rem 2.5rem;
+	background: lightgray;
+}
+
+/*************
+ *           *
+ * cart.html *
+ *           *
+ *************/
+.cart-tbl {
+	border-spacing: 0rem;
+	width: 100%;
+	
+	text-align: center;
+}
+
+.cart-tbl-header {
+	border-top: 0.25rem solid black;
+	border-bottom: 0.1rem solid black;
+}
+
+.cart-tbl-footer {
+	border-bottom: 0.25rem solid black;
+}
+
+.cart-tbl-row {
+	
+}
+
+.cart-tbl-data {
+	margin: 0rem;
+	border-left: 0.25rem solid black;
+	border-bottom: 0.25rem solid black;
+	padding: 0.25rem;
+}
+.cart-tbl-data:last-child {
+	border-right: 0.25rem solid black;
+}
+
+.cart-tbl-data img {
+	max-width: 5rem;
+	width: 100%;
+}
+
+.cart-banner {
+	margin: 1rem 0rem;
+	padding: 1rem;
+}
+.cart-failure {
+	background: red;
+	color: white;
+	
+	font-weight: bold;
+}
+.cart-success {
+	background: darkgreen;
+	color: white;
+	
+	font-weight: bold;
+}
+
+
+/************
+ *          *
+ * item.php *
+ *          *
+ ************/
+.item-name {
+	/* Make font big and bold*/
+	font-size: 1.5rem;
+	font-weight: bold;
+	
+	/* Make it space well*/
+	margin-bottom: 1rem;
+}
+
+.item-image {
+	border: 0.1rem solid lightgray;
+	
+	width: 100%;
+}
+.item-price {
+	font-size: 2rem;
+}
+.item-stock {
+	
+}
+.item-desc {
+	
+}
+
+.item-panel {
+	
+}
+
+.item-panel-image {
+	width: 75%;
+}
+.item-info {
+	width: 25%;
+	padding: 1rem;
+}
+
+.item-btn {
+	
+}
+
+/****************** 
+ *                *
+ * catalog.html *
+ *                *
+ ******************/
+
+.catalog {
+	/* Make into a nice layout */
+	display: flex;
+	flex-direction: row;
+    flex-wrap: wrap;
+	flex-basis: 10%; /* Make our elements equal size */
+	justify-content: space-evenly; /* Make it look nice and not weird*/
+	
+	/* Take all vertical-horizontal space */
+	width: 100%;
+	height: 100%;
+	
+	/* Make obvious where the space is */
+	padding: 1rem 0rem;
+	border: 0.1rem solid lightgrey;
+}
+
+.catalog-item {
+	/* Make nice clickable boxes! */
+	margin: 0.25rem 2%;
+	border: 0.25rem solid black;
+	padding: 1rem;
+	
+	/* Design look stuff */
+	max-width: 20%;
+	min-width: 10rem;
+	text-align: center;
+	
+	background: #f0f0f0;
+	
+	/* Set the cursor so it looks like you can click on it */
+	cursor: pointer;
+}
+
+.catalog-item:hover {
+	background: #e0e0ff;
+}
+
+.catalog-item:active {
+	background: #eee0ff;
+}
+
+.catalog-item-image {
+	/* Make imageas big as possible */
+	max-width: 100%;
+	max-height: 100%;
+	
+	/* Make the border of the item obvious */
+	border: 0.1rem solid black;
+}
+
+.catalog-item-text {
+	display: block;
+}
+
+.catalog-item-name {
+	font-weight: bold;
+	font-size: 1.2rem;
+}
+.catalog-item-price {
+	font-size: 1rem;
+}
+.catalog-item-stock {
+	color: #a0a0a0;
+	font-size: 0.75rem;
+}
+
+.catalog-bad {
+	color: red;
+	font-weight: bold;
+	text-decoration: underline;
+}
+
+/****************
+ *              *
+ *  ADMIN PANEL *
+ *              *
+ ****************/
+#user-list, #item-list {
+	border-spacing: 0rem;
+}
+
+.btn-delete, .btn-delete:visited {
+	border: darkred 0.1rem solid;
+	background: linear-gradient(red 0%, darkred 100%);
+	color: white;
+}
+.btn-delete:hover {
+	border: darkred 0.1 solid;
+	background: darkred;
+}
+.btn-delete:active {
+	border: blue 0.1 solid;
+	background: blue;
+}
+
+.table-user-head .table-user-data, .table-item-head .table-item-data {
+	background: linear-gradient(#0000ff 0%, #000000 200%);
+	color: white;
+	
+	padding: 0.5rem 0rem;
+}
+
+.table-user-row, .table-item-row {
+	
+}
+
+.table-user-data, .table-item-data {
+	text-align: center;
+}
+
+.table-user-data > *, .table-item-data > * {
+	width: 100%;
+}
+
+
+.table-user-id, .table-item-id {
+	max-width: 1.5rem;
+	min-width: 1rem;
+	
+	font-weight: bold;
+}
+.table-user-username, .table-item-name {
+	
+}
+.table-user-type, .table-item-category {
+	
+}
+.table-user-name, .table-user-address, .table-user-phone, .table-user-email, .table-item-price, .table-item-stock {
+
+}
