@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<title>Rael Trading - Cart</title>
+		
+		<link rel="stylesheet" href="./css/style.css"/>
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+		<script src="./js/cookie.js"></script>
+		<script src="./js/item.js"></script>
+	</head>
+	
+	<body>
+	
+		<h2>Cart</h2>
+		
+		<table id="cart-tbl" class="cart-tbl">
+			<thead>
+				<tr class="cart-tbl-row">
+					<th class="cart-tbl-data cart-tbl-header">ID</th>
+					<th class="cart-tbl-data cart-tbl-header">Image</th>
+					<th class="cart-tbl-data cart-tbl-header">Name</th>
+					<th class="cart-tbl-data cart-tbl-header">Stock</th>
+					<th class="cart-tbl-data cart-tbl-header">Quantity</th>
+					<th class="cart-tbl-data cart-tbl-header">Options</th>
+					<th class="cart-tbl-data cart-tbl-header">Price</th>
+				</tr>
+			</thead>
+			
+			<tbody id="cart-tbl-body">
+			
+			</tbody>
+			
+			<tfoot>
+				<tr class="cart-tbl-row">
+					<td class="cart-tbl-data cart-tbl-footer" colspan=6></td>
+					<td id="cart-tbl-total" class="cart-tbl-data cart-tbl-footer">TOTAL</td>
+				</tr>
+			</tfoot>
+		</table>
+		
+		<button onclick="item_orderCart()">Confirm Order</button>
+		
+	</body>
+</html>
