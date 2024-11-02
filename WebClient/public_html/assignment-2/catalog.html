@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 	<head>
 		<title>Rael Trading - Catalog</title>
@@ -15,8 +15,8 @@
 		<h2>Catalog</h2>
 		
 		<form id="search-form" method="GET">
-			<select id="select-catergory" class="select-catergory"></select>
-			<input id="search-input" name="search-input" placeholder="Search" type="text"/>
+			<label id="search-cat">Category: </label><select id="select-catergory" class="select-catergory" aria-labelledby="search-cat" ></select>
+			<label id="search-name">Search: </label><input id="search-input" name="search-input"  aria-labelledby="search-name" placeholder="Search" type="text"/>
 			<button>Search</button>
 		</form>
 		

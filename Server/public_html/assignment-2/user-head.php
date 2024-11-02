@@ -389,7 +389,6 @@ function user_exec() {
 	// Try login as user, if fails login as admin
 	// If none work, then the user is not authorised to change
 	$cookie_str = $_COOKIE["cs_ulog"];
-	
 	$json_str = null;
 	
 	// Cordova work around
@@ -510,8 +509,8 @@ function user_exec() {
 			user_delete($user_id);
 			
 			// Delete
-			$user = user_get($user_id);
-			if ($user != null) {
+			$new_user = user_get($user_id);
+			if ($new_user != null) {
 				echo "{\"success\":0}";
 			}
 			echo "{\"success\":1}";

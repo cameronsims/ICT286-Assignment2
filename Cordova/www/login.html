@@ -1,14 +1,8 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<title>Rael Trading</title>
 		<link rel="stylesheet" href="./css/style.css"/>
-		
-		<!-- Annoying Cordova Stuff -->
-		<meta http-equiv="Access-Control-Allow-Origin" content="*">
-		<meta http-equiv="Access-Control-Allow-Methods" content="GET,PUT,POST,DELETE">
-		<meta http-equiv="Access-Control-Allow-Headers" content="Content-Type">
-		<meta http-equiv="Referrer-Policy" content="no-referrer, strict-origin-when-cross-origin" />
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 		<script src="./js/catalog.js"></script>
@@ -19,18 +13,18 @@
 	<body onload="index_set('login.html')">
 		<h2>Login</h2>
 		<form id="user-login" accept-charset="utf-8">
-			<input id="user-name" name="uname"  type="text"     placeholder="Username"/>
-			<input id="user-pass" name="upw"    type="password" placeholder="Password"/>
+			<input id="user-name" name="uname-login"  type="text"     placeholder="Username"/>
+			<input id="user-pass" name="upw-login"    type="password" placeholder="Password"/>
 			<!--Onsubmit is in a different file-->
 			<input id="user-sbmt" type="submit" value="Log-in"/>
 		</form>
 		
 		<h2>Signup</h2>
 		<form id="user-signup" accept-charset="utf-8">
-			<input id="user-new-name" name="uname"  type="text"     placeholder="Username"/>
-			<input id="user-new-pass" name="upw"    type="password" placeholder="Password"/>
+			<input id="user-new-name" name="uname-sign"  type="text"     placeholder="Username"/>
+			<input id="user-new-pass" name="upw-sign"    type="password" placeholder="Password"/>
 			<!--Onsubmit is in a different file-->
-			<input id="user-signup" type="submit" value="Signup"/>
+			<input id="user-rqst" type="submit" value="Sign-up"/>
 		</form>
 	</body>
 </html>
