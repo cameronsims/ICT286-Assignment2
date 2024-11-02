@@ -211,6 +211,7 @@ function cart_place() {
 		
 		let eImage = $( document.createElement("img") );
 		eImage.attr("src", "./img/item/" + ID + ".jpeg");
+		eImage.attr("alt", "Image of Item #" + ID + ".");
 		eImageD.append(eImage);
 		eRow.append(eImageD);
 		
@@ -342,13 +343,15 @@ function item_place(json) {
 	
 	// The ID 
 	const ID = json["id"];
+	const NAME = json["name"];
 	
 	// The hash map
 	let eName = $(".item-name");
-	eName.text(json["name"]);
+	eName.text(NAME);
 	
 	let eImage = $(".item-image");
 	eImage.attr("src", "./img/item/" + ID + ".jpeg");
+	eImage.attr("alt", "Image of \"" + NAME + ".\"");
 	
 	let eButton = $(".item-btn");
 	eButton.click(function() {

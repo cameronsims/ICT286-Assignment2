@@ -1,5 +1,5 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<title>Rael Trading</title>
 		<link rel="stylesheet" href="./css/style.css"/>
@@ -16,13 +16,12 @@
 		
 		<b>Update User Details</b>
 		<form id="user-modify" accept-charset="utf-8">
-			<input id="user-password" name="user-password" type="passsword" placeholder="Password"/><br/>
-			<input id="user-rname"    name="user-rname"    type="text"      placeholder="Real Name"/><br/>
-			<input id="user-address"  name="user-address"  type="text"      placeholder="Address"/><br/>
-			<input id="user-phone"    name="user-phone"    type="text"      placeholder="Phone"/><br/>
-			<input id="user-email"    name="user-email"    type="text"      placeholder="Email"/><br/>
-			
-			<input id="user-change"                        type="submit" value="Update"/>
+			<label id="label-password">Password: </label> <input aria-labelledby="label-password" id="user-password" name="user-password" type="password"  placeholder="Password"/><br/>
+			<label id="label-rname"   >Real Name: </label><input aria-labelledby="label-rname"    id="user-rname"    name="user-rname"    type="text"      placeholder="Real Name"/><br/>
+			<label id="label-address" >Address:</label>   <input aria-labelledby="label-address"  id="user-address"  name="user-address"  type="text"      placeholder="Address"/><br/>
+			<label id="label-phone"   >Phone (#):</label> <input aria-labelledby="label-phone"    id="user-phone"    name="user-phone"    type="text"      placeholder="Phone"/><br/>
+			<label id="label-email"   >Email: </label>    <input aria-labelledby="label-email"    id="user-email"    name="user-email"    type="text"      placeholder="Email"/><br/>
+			<label>Update: </label>                       <input                                  id="user-change"                        type="submit"    value="Update"/>
 		</form>
 	
 		<div class="other-panel">	

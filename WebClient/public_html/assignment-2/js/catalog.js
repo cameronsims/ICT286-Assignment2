@@ -14,6 +14,7 @@ function catalog_placeItem(item, eFrag, onclick = null) {
 	
 	let eImage = $( document.createElement("img") );
 	eImage.attr("src", "./img/item/" + item["id"] + ".jpeg") 
+	eImage.attr("alt", "Image of \"" + item["name"] + ".\"");
 	eImage.addClass("catalog-item-image");
 	
 	let eTitle = $( document.createElement("span") );
