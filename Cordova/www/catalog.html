@@ -1,16 +1,10 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 	<head>
 		<title>Rael Trading - Catalog</title>
 		
 		<link rel="stylesheet" href="./css/style.css"/>
-		
-		<!-- Annoying Cordova Stuff -->
-		<meta http-equiv="Access-Control-Allow-Origin" content="*">
-		<meta http-equiv="Access-Control-Allow-Methods" content="GET,PUT,POST,DELETE">
-		<meta http-equiv="Access-Control-Allow-Headers" content="Content-Type">
-		<meta http-equiv="Referrer-Policy" content="no-referrer, strict-origin-when-cross-origin" />
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 		<script src="./js/catalog.js"></script>
@@ -21,8 +15,8 @@
 		<h2>Catalog</h2>
 		
 		<form id="search-form" method="GET">
-			<select id="select-catergory" class="select-catergory"></select>
-			<input id="search-input" name="search-input" placeholder="Search" type="text"/>
+			<label id="search-cat">Category: </label><select id="select-catergory" class="select-catergory" aria-labelledby="search-cat" ></select>
+			<label id="search-name">Search: </label><input id="search-input" name="search-input"  aria-labelledby="search-name" placeholder="Search" type="text"/>
 			<button>Search</button>
 		</form>
 		

@@ -1,15 +1,9 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 	<head>
 		<title>Rael Trading - Help</title>
 		
 		<link rel="stylesheet" href="./css/style.css"/>
-		
-		<!-- Annoying Cordova Stuff -->
-		<meta http-equiv="Access-Control-Allow-Origin" content="*">
-		<meta http-equiv="Access-Control-Allow-Methods" content="GET,PUT,POST,DELETE">
-		<meta http-equiv="Access-Control-Allow-Headers" content="Content-Type">
-		<meta http-equiv="Referrer-Policy" content="no-referrer, strict-origin-when-cross-origin" />
 		
 		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
 	</head>
@@ -20,27 +14,30 @@
 		<ul>
 			<li><a href="#help-search">How to Search</a></li>
 			<li><a href="#help-cart">Cart Issues</a></li>
-			
-			<li><a href="#help-account">Account Management</a></li>
-			<ul>
-				<li><a href="help-account-create">Create an Account</a></li>
-				<li><a href="help-account-delete">Delete an Account</a></li>
-				<li><a href="help-account-modify">Modify an Account</a></li>
-			</ul>
+			<li>
+				<a href="#help-account">Account Management</a>
+				<ul>
+					<li><a href="#help-account-create">Create an Account</a></li>
+					<li><a href="#help-account-delete">Delete an Account</a></li>
+					<li><a href="#help-account-modify">Modify an Account</a></li>
+				</ul>
+			</li>
 		</ul>
 		
 		<!-- Search explaination -->
 		<h3 id="help-search">How to Search</h3>
 		<span>
 			Click on the "catalog" menu option, there you will be given two ways to search the 
-			Database for items. Searching by Catergory or searching by keywords, both can be used
-			seperately or together. Searching with "None" as a catergory will return all items.
+			Database for items. Searching by category or searching by keywords, both can be used
+			seperately or together. Searching with "None" as a category will return all items.
 			If no items have been queried the catalog entries will be empty, and no items will be visible until returned.
  		</span>
 		
 		<h3 id="help-cart">Cart Issues</h3>
-		To add to your cart, simply click on the product you'd like to order and click "Add to Cart." After this is done, you should be able to go to your cart.
-		If you cannot order please try the following:
+		<span>
+			To add to your cart, simply click on the product you'd like to order and click "Add to Cart." After this is done, you should be able to go to your cart.
+			If you cannot order please try the following:
+		</span>
 		<ul>
 			<li>Creating / Logging into an Account.</li>
 			<li>Checking if the items you want are avaliable.</li>
@@ -49,17 +46,20 @@
 		
 		<!-- How to login/create account -->
 		<h3 id="help-account">Account Management</h3>
+		<h4 id="help-account-create">How to Create an Account</h4>
 		<span>
-			<h4 id="help-account-create">How to Create an Account</h4>
 			To create an account simply click on the "Log-in" button at the top right.
 			If the button already displays a name, you have already been logged in as a verified user.
-			
-			<h4 id="help-account-delete">How to Delete an Account</h4>
+			If you are for whatever reason redirected from the log-in sign-up page, please try again.
+		</span>
+		
+		<h4 id="help-account-delete">How to Delete an Account</h4>
+		<span>
 			To delete an account, go to the log-in screen and it should be a red button that says "delete account."<br/>
 			<i>Once an account is deleted it can not be recovered!</i>		
-			
-			<h4 id="help-account-modify">How to Change details on an Account</h4>
-			To change your account details please click on the name at the top right, it should send you to the user page where you are free to change your details.
 		</span>
+		
+		<h4 id="help-account-modify">How to Change details on an Account</h4>
+		<span>To change your account details please click on the name at the top right, it should send you to the user page where you are free to change your details.</span>
 	</body>
 </html>
